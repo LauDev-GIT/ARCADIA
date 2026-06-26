@@ -1,0 +1,328 @@
+body {
+  background-color: rgba(0, 128, 128, 0.897);
+}
+
+/*  B.E.M
+Convention de nommage : BEM
+Block 
+Elelement
+ modifier
+*/
+.alert alert-danger {
+  background-color: red;
+}
+.button--black {
+  background-color: #c47c1c;
+  color: white;
+  border-radius: 40px;
+  width: 200px;
+}
+
+/*je viens styliser mon header*/
+.header {
+  /* Style the header 
+ */
+  background-color: rgba(136, 188, 144, 0.9948999881744385);
+
+  /*padding: 20px 0;
+  text-align: center;
+  font-size: 20px;*/
+  color: white;
+  width: 100%;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  /*align-items: center;*/
+  padding: 20px 0;
+}
+.header__nav {
+  display: none;
+}
+
+.header__list-links {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  height: 100%;
+}
+
+.header__quick-actions {
+  display: flex;
+  column-gap: 20px;
+}
+
+/* FLUX*/
+
+.flux {
+  max-width: 1250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*la on vient utiliser un media querie ,car je suis sur un moment bloquant
+je ne peux pas faire autrement
+*/
+@media screen and (min-width: 320px) {
+  /*
+  car le site que je realise est fait pour mobile , la surcouche
+  de code sera faite pour desktpop
+  c'est tout le code qui va dans mon ordinateur
+  
+  il faut changer la dimension prendre plutot la dimension mode tablette
+  */
+  .header__nav {
+    display: initial;
+  }
+}
+
+.header__list-links {
+  /*
+  propriete que j'ecrit pour mettre mes liens
+   les uns a cote  des autres
+  parce que je suis en display flex
+  */
+  display: flex;
+  column-gap: 2rem;
+  align-items: center;
+  height: 100%;
+}
+.titre {
+  text-align: center;
+}
+
+/*
+MAIN
+*/
+.main {
+  display: flex;
+  flex-direction: column;
+  /*
+  cela me permet de gerer 
+  l'espace entre toutes mes sections
+  */
+  row-gap: 3rem;
+}
+
+/*
+HERO
+*/
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+/*
+mon image doit etre avant mon welcome
+1ere facon de faire
+*/
+.hero__image {
+  order: -1;
+  /*
+  en flex ses enfant  ont tous un ordre = a zero
+  
+  ou sinon ont l'ecrit dans le bon sens dans mon html
+  cela est plus optimise, et m'evite des lignes 
+  supplementaire dans mon css
+  */
+}
+@media screen and (min-width: 321px) {
+  /*sur ordinateur
+  et pour que mon flex fonctionne j'ai besoin d'un parent commun
+  les element que je veux mettre a cote des autres
+  doivent etre les enfants direct du meme parent*/
+  .hero {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+}
+/*
+PARTNERS
+sur telephone*/
+.section-partners {
+  text-align: center;
+}
+/*
+maintenat je code cela pour ordinateur
+
+@media screen and (min-width: 321px) {
+  .section-partners__list-logs {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;*/
+/*
+    j'utilise la propriete flex-wrap parceque mon site 
+    n'est pas respponsive avnt mes 321px
+    
+    flex-wrap: wrap;
+  }
+}
+du compte fait je n'ai meme pas besoin de media querie
+*/
+.section-partners__list-logs {
+  display: flex;
+  /* gap: 2rem;
+  
+  pour pouvoir gerer l'espacement des logo au niveau responsive on vien joeur finement sur le gap
+  */
+  row-gap: 1rem;
+  column-gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.section-partners__logo {
+  /*
+  il faut s'aider de l regle du navigateur pour bien placer mes logo
+  */
+  min-width: 20rem;
+}
+/*
+SECTION TWO
+ a observer attentivement car on n'utilise pas de media queries
+ */
+.section-two {
+  display: flex;
+  /*
+  permet de mettre les elements les un a cote des autres
+  et comme je suis en mobile first
+  -----------------------
+  flex-direction: column;
+  ------------------------
+  et grace cette column je peux faire un petit 
+  row-gap de manirere a espacer mes elements
+  
+  row-gap: 1rem;*/
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  /*
+  flex-wrap: wrap;
+  me permet de replacer mes elements a la ligne quand je n'ai plus de place
+  */
+  align-items: center;
+}
+/*
+ce que l'on est obliger de faire lorzque l'on est en flex c'est de 
+si je veux deux blocs les un a cote des autre 
+je dois creer deux elements HTML
+qui sont les enfants direct, de mon element qui est en flex
+Donc la on est obliger de rajouter une div dans le fichier html
+cette div va juste encapsuler tous mes textes
+la sauge ainsi que son paragraphe et son lien.
+____________________________
+avec un flex direction colonnne ,
+ je ne peut pas mettre mes elements les un a cote des autres
+donc je retire 
+
+ flex-direction: column;
+ de ma section-two
+ a la place je met un 
+ flex-direction: row-reverse
+ */
+.section-two__bloc {
+  /*
+  width: 100%;
+  max-width: 321px;
+  */
+  flex-grow: 1;
+  width: 150px;
+
+  /*
+  cela veut dir a mon element tu ne peut pas depasser tel taille.
+  aller sur mozilla et observer 
+  les condition de flex basis
+  */
+}
+.section-two__bloc img {
+  width: 100%;
+}
+
+/*
+correspond a la reprresentation des cards habitats
+*/
+
+.section-habitat {
+  text-align: center;
+}
+
+.section-habitat__cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+/*
+la cela devient interessant pour moi
+*/
+
+.section-habitat__card {
+  /* 
+                            Add shadows to create the "card" effect 
+  */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+/* 
+                            On mouse-over, add a deeper shadow 
+*/
+.section-habitat__card :hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.section-habitat__card {
+  width: 100%;
+  max-width: 20rem;
+
+  /*
+                            With rounded corners:
+  */
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+
+  /*
+  /*
+  3rem = 25px
+  30rem= 250px
+  
+  etant donnee que j'ai une device a 100%
+  la taille de mon image s'adapte a mon écran
+  on voit que avec du flex et du wrap 
+  on evite les media queries
+  taille minimal nous permet d'avoir 
+  des containers flexibles
+  
+  pour redimensionner les images voici le liens
+  https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio
+ on redimensionner le svg 
+ width="35"
+          height="36"
+          viewBox="0 0 35 36"  */
+}
+
+/* Style the footer 
+*/
+
+.foot {
+  background-color: #6465a5;
+
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.nav {
+  justify-content: center;
+  border-bottom: 2px;
+}
+
+.nav-item {
+  vertical-align: inherit;
+}
+.text {
+  vertical-align: inherit;
+}
+.nav-link {
+  vertical-align: inherit;
+}
